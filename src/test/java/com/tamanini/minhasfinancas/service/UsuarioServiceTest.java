@@ -27,10 +27,10 @@ public class UsuarioServiceTest {
     @MockBean
     UsuarioRepository repository;
 
-    @Test(expected = Test.None.class)
+    @Test
     public void deveSalvarUmUsuario() {
         Mockito.doNothing().when(service).validarEmail(Mockito.anyString());
-        Usuario usuario = Usuario.builder().id(1l).nome("nome").email("email@email.com").senha("senha").build();
+        Usuario usuario = Usuario.builder().id(1L).nome("nome").email("email@email.com").senha("senha").build();
 
         Mockito.when(repository.save(Mockito.any(Usuario.class))).thenReturn(usuario);
 
@@ -59,7 +59,7 @@ public class UsuarioServiceTest {
         String email = "email@email.com";
         String senha = "senha";
 
-        Usuario usuario = Usuario.builder().email(email).senha(senha).id(1l).build();
+        Usuario usuario = Usuario.builder().email(email).senha(senha).id(1L).build();
         Mockito.when(repository.findByEmail(email)).thenReturn(Optional.of(usuario));
 
         Usuario result = service.autenticar(email, senha);
